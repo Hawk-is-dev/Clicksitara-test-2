@@ -31,10 +31,10 @@ MATH_PATTERN = re.compile(r"(\d+)\s*\+\s*(\d+)\s*=\s*\?")
 # (seen on profile click and on code submit). When this shows up, we retry
 # the promo task for that one account/code only.
 PROMO_ERROR_TEXT = "Упс! Что-то сломалось"
-PROMO_MAX_RETRIES = 3
-PROMO_RETRY_DELAY_SECONDS = 1
+PROMO_MAX_RETRIES = int(os.environ.get("PROMO_MAX_RETRIES", "3"))
+PROMO_RETRY_DELAY_SECONDS = float(os.environ.get("PROMO_RETRY_DELAY_SECONDS", "3"))
 # Per-step wait for the bot's reply during the promo flow (was 30s).
-PROMO_STEP_TIMEOUT = 15
+PROMO_STEP_TIMEOUT = float(os.environ.get("PROMO_STEP_TIMEOUT", "25"))
 # Optional stagger between accounts (seconds * account index). 0 = max speed.
 PROMO_STAGGER_SECONDS = float(os.environ.get("PROMO_STAGGER_SECONDS", "0"))
 
